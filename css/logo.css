@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Effective UI/UX: Vector Logo System & University Branding
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   University Branding Integration (REVA & GKVK)
+   -------------------------------------------------------------------------- */
+
+/* Container for the central brand elements (Icon + Title) */
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    /* Prevent title from crunching too much unless necessary */
+}
+
+/* University Logo Wrappers */
+.uni-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    /* Minimal padding */
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    height: 100%;
+    /* Match parent height */
+}
+
+.uni-logo-wrapper:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* Logo Images - Responsive Scaling */
+.uni-logo {
+    height: 55px;
+    /* Default Desktop Height */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Specific Adjustments */
+.reva-logo {
+    margin-right: 15px;
+}
+
+.gkvk-logo {
+    margin-left: 15px;
+}
+
+.sdg-logo {
+    margin-left: 15px;
+    /* Separate from GKVK */
+}
+
+/* --------------------------------------------------------------------------
+   Existing Vector Logo Styles (Preserved & Enhanced)
+   -------------------------------------------------------------------------- */
+
+/* Base Logo Wrapper (Header) - The central green icon */
+.logo-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid white;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.logo-icon-wrapper i {
+    font-size: 24px;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.logo-icon-wrapper:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    border-color: #e8f5e9;
+}
+
+.logo-icon-wrapper:hover i {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* Header Text Styling */
+.header .logo h1 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #27ae60, #2980b9);
+    background-clip: text;
+    /* Standard property */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    /* Ensure no external margins disrupt layout */
+    white-space: nowrap;
+    /* Prevent line break on desktop */
+}
+
+/* Header Background Refinement */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(39, 174, 96, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design (Strict Layout Control)
+   -------------------------------------------------------------------------- */
+
+/* Tablet & Smaller Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .uni-logo {
+        height: 45px;
+    }
+
+    .header .logo h1 {
+        font-size: 1.25rem;
+    }
+
+    .reva-logo {
+        margin-right: 10px;
+    }
+
+    .gkvk-logo {
+        margin-left: 10px;
+    }
+
+    .sdg-logo {
+        margin-left: 10px;
+    }
+}
+
+/* Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+
+    /* Main logo container adjustment */
+    .logo {
+        flex: 1;
+        /* Take available space */
+        justify-content: space-between;
+        /* Spread elements */
+        align-items: center;
+        /* Vertical center alignment */
+        width: auto;
+        /* Let flex handle width */
+        gap: 2px;
+        /* Minimal gap for tight mobile fit */
+    }
+
+    /* Reduce central brand group spacing */
+    .brand-group {
+        gap: 4px;
+        flex: 1;
+        /* Allow it to shrink/grow */
+        justify-content: center;
+        /* Center the title if space permits */
+        min-width: 0;
+        /* Enable shrinking below content size */
+    }
+
+    /* Resize University Logos */
+    .uni-logo {
+        height: 32px;
+        /* Smaller to fit 4 elements */
+    }
+
+    /* Remove extra margins to save space */
+    .reva-logo,
+    .gkvk-logo,
+    .sdg-logo {
+        margin: 0;
+    }
+
+    /* Resize Central Icon */
+    .logo-icon-wrapper {
+        width: 32px;
+        height: 32px;
+        margin-right: 4px;
+        /* Minimal margin */
+    }
+
+    .logo-icon-wrapper i {
+        font-size: 16px;
+    }
+
+    /* Title adjustments */
+    .header .logo h1 {
+        font-size: 1rem !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+        /* Use available space from parent */
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+
+    /* Compact Mode */
+    .uni-logo {
+        height: 30px;
+        /* Minimal readable size */
+    }
+
+    /* Hide text if screen is extremely narrow (< 320px) or just reduce size further? 
+       For 480px, we try to keep text but scale it down. */
+    .header .logo h1 {
+        font-size: 0.9rem !important;
+        max-width: 130px;
+        /* Constrain width to prevent pushing others */
+    }
+
+    .logo-icon-wrapper {
+        width: 30px;
+        height: 30px;
+        margin-right: 2px;
+    }
+
+    .logo-icon-wrapper i {
+        font-size: 14px;
+    }
+
+    /* Ensure padding in header doesn't eat too much space */
+    .header .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Hero/Welcome Section Enhancements (Independent of Header)
+   -------------------------------------------------------------------------- */
+.hero-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px auto;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4), inset 0 4px 8px rgba(255, 255, 255, 0.2);
+    animation: floatIcon 6s ease-in-out infinite;
+}
+
+.hero-icon i {
+    font-size: 50px;
+}
+
+.hero-icon:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5);
+}
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+    .logo-icon-wrapper {
+        border-color: #2d3436;
+        box-shadow: 0 4px 10px rgba(39, 174, 96, 0.2);
+    }
+
+    .logo-icon-wrapper:hover {
+        border-color: #2d3436;
+    }
+
+    .uni-logo {
+        /* Optional: add slight brightness boost for dark mode if logos are dark */
+        filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.1));
+    }
+}

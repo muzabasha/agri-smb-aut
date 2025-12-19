@@ -1,0 +1,47 @@
+/* Chat Header Button */
+.chat-header-btn {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(30, 58, 138, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.chat-header-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(30, 58, 138, 0.4);
+    background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+}
+
+.chat-header-btn i {
+    font-size: 1rem;
+}
+
+/* Voice Toggle in Chat Window */
+.voice-toggle {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.voice-toggle:hover {
+    color: white;
+}
+
+/* --- CHAT WINDOW (Existing styles) --- */
+/* ... (Rest of the file should be preserved if I append or I can rewrite nicely) */
+/* Ideally I should use replace_file to APpend, but I will rewrite the button style part by careful insertion or rewrite file if small enough */

@@ -1,0 +1,16 @@
+node_modules/
+.env
+.DS_Store
+.env*.local
+
+# Local development files
+START_AGRI_LMS.bat
+package-lock.json
+
+# Development documentation
+# TESTING_LINKS.md
+# DEPLOYMENT_VERIFICATION.md
+
+# Platform specific
+.netlify
+.vercel

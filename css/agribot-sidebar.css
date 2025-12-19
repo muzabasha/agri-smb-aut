@@ -1,0 +1,88 @@
+/* AgriBot Sidebar Styles */
+.agribot-sidebar-btn {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 5px;
+    border-radius: 0 10px 10px 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: left 0.3s ease;
+}
+
+.agribot-sidebar {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 280px;
+    height: 100%;
+    background: white;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    transition: left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.agribot-sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-sidebar-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.common-questions-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    list-style: none;
+    margin: 0;
+}
+
+.question-item {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.question-item:hover {
+    background: #e9ecef;
+    border-color: var(--primary-color);
+}
+
+.question-item i {
+    margin-right: 8px;
+    color: var(--secondary-color);
+}

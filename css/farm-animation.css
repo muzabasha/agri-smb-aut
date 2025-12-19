@@ -1,0 +1,1090 @@
+/* --- FARM ANIMATION SCENE (RESPONSIVE) --- */
+.farm-scene-container {
+    width: 100%;
+    /* Use a responsive height: min 120px, max 20vh (never too tall) */
+    height: clamp(140px, 20vh, 200px);
+    background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 60%, #a5d6a7 60%, #81c784 100%);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid #558b2f;
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Sun Animation - Responsive Position */
+.sun {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: clamp(40px, 8vw, 80px);
+    /* Scales with screen width */
+    height: clamp(40px, 8vw, 80px);
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FFEB3B, 0 0 40px #FDD835;
+    animation: sunPulse 4s infinite alternate;
+}
+
+@keyframes sunPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px #FFEB3B;
+    }
+
+    100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px #FFA000;
+    }
+}
+
+/* Cloud Animation - Responsive Speed & Size */
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    opacity: 0.8;
+    animation: moveClouds linear infinite;
+}
+
+/* Use vw for cloud sizes so they look proportional */
+.cloud-1 {
+    top: 15%;
+    left: -20%;
+    width: 12vw;
+    height: 5vh;
+    min-width: 80px;
+    min-height: 30px;
+    animation-duration: 35s;
+}
+
+.cloud-2 {
+    top: 30%;
+    left: -25%;
+    width: 10vw;
+    height: 4vh;
+    min-width: 60px;
+    min-height: 25px;
+    animation-duration: 45s;
+    animation-delay: 5s;
+}
+
+.cloud-3 {
+    top: 10%;
+    left: -30%;
+    width: 15vw;
+    height: 6vh;
+    min-width: 100px;
+    min-height: 40px;
+    animation-duration: 55s;
+    animation-delay: 2s;
+}
+
+@keyframes moveClouds {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(120vw);
+    }
+}
+
+/* Landscape / Crops */
+.crops {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    /* Relative height */
+    min-height: 20px;
+    background: repeating-linear-gradient(90deg, #558b2f 0px, #558b2f 5px, #33691e 5px, #33691e 10px);
+    z-index: 1;
+}
+
+/* Growing Crops - Evenly Distributed */
+.growing-crop {
+    position: absolute;
+    bottom: 15%;
+    /* Sit on top of crops */
+    font-size: clamp(16px, 3vh, 24px);
+    color: #2e7d32;
+    animation: grow 3s infinite alternate;
+}
+
+.c1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.c2 {
+    left: 25%;
+    animation-delay: 1s;
+}
+
+.c3 {
+    left: 40%;
+    animation-delay: 2s;
+}
+
+.c4 {
+    left: 60%;
+    animation-delay: 0.5s;
+}
+
+.c5 {
+    left: 75%;
+    animation-delay: 1.5s;
+}
+
+.c6 {
+    left: 90%;
+    animation-delay: 2.5s;
+}
+
+@keyframes grow {
+    0% {
+        transform: scaleY(0.8);
+    }
+
+    100% {
+        transform: scaleY(1.2);
+    }
+}
+
+/* Hills - Background Layer */
+.hills {
+    position: absolute;
+    bottom: 25%;
+    width: 100%;
+    height: 40%;
+}
+
+.hill {
+    position: absolute;
+    bottom: 0;
+    border-radius: 100% 100% 0 0;
+    background: #66bb6a;
+}
+
+.hill-1 {
+    left: -5%;
+    width: 40%;
+    height: 80%;
+    background: #81c784;
+}
+
+.hill-2 {
+    left: 25%;
+    width: 50%;
+    height: 100%;
+    background: #66bb6a;
+    z-index: 0;
+}
+
+.hill-3 {
+    right: -5%;
+    width: 40%;
+    height: 90%;
+    background: #81c784;
+}
+
+
+/* Tractor Animation - Percentage Based Travel */
+.tractor-wrapper {
+    position: absolute;
+    bottom: 5px;
+    left: -20%;
+    /* Start well off-screen */
+    z-index: 10;
+    animation: driveTractor 25s linear infinite;
+}
+
+.tractor-body {
+    display: inline-block;
+    font-size: clamp(40px, 8vh, 70px);
+    /* Responsive Tractor Size */
+    color: #e65100;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes driveTractor {
+    0% {
+        left: -20%;
+        transform: scaleX(1);
+    }
+
+    45% {
+        left: 110%;
+        transform: scaleX(1);
+    }
+
+    45.01% {
+        transform: scaleX(-1);
+    }
+
+    50% {
+        left: 110%;
+    }
+
+    /* Wait offscreen */
+    95% {
+        left: -20%;
+        transform: scaleX(-1);
+    }
+
+    95.01% {
+        transform: scaleX(1);
+    }
+
+    100% {
+        left: -20%;
+    }
+}
+
+/* Dust Particles */
+.dust {
+    position: absolute;
+    bottom: 5px;
+    left: -10px;
+    width: clamp(6px, 1vw, 12px);
+    height: clamp(6px, 1vw, 12px);
+    background: #d7ccc8;
+    border-radius: 50%;
+    opacity: 0;
+    animation: dustPuff 1s linear infinite;
+}
+
+.dust-2 {
+    left: -25px;
+    animation-delay: 0.2s;
+}
+
+.dust-3 {
+    left: -40px;
+    animation-delay: 0.4s;
+}
+
+@keyframes dustPuff {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.5) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2) translateY(-10px);
+    }
+}
+
+/* Audience - Responsive Positioning & Scaling */
+.audience-wrapper {
+    position: absolute;
+    bottom: 12%;
+    right: 5%;
+    /* Stick to right edge */
+    display: flex;
+    gap: clamp(5px, 2vw, 20px);
+    z-index: 5;
+}
+
+.audience-member {
+    text-align: center;
+    position: relative;
+    animation: bounceGentle 2s infinite alternate ease-in-out;
+}
+
+.audience-icon {
+    font-size: clamp(16px, 3vh, 30px);
+    /* Responsive Icons */
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    padding: clamp(4px, 1vh, 10px);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.audience-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.am-1 {
+    animation-delay: 0s;
+}
+
+.am-2 {
+    animation-delay: 0.5s;
+}
+
+.am-3 {
+    animation-delay: 1s;
+}
+
+@keyframes bounceGentle {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Challenges - Responsive Bubbles */
+.challenges-wrapper {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 20%;
+    /* Relative width area */
+    height: 50%;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.challenge-bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #e74c3c;
+    border-radius: 50%;
+    width: clamp(30px, 5vw, 50px);
+    height: clamp(30px, 5vw, 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(16px, 2.5vw, 24px);
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+    opacity: 0;
+    transform: scale(0);
+    animation: popInOut 6s infinite ease-in-out;
+}
+
+.ch-1 {
+    top: 10%;
+    left: 0%;
+    animation-delay: 0s;
+}
+
+.ch-2 {
+    top: 50%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.ch-3 {
+    top: 0%;
+    left: 80%;
+    animation-delay: 4s;
+}
+
+@keyframes popInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    10%,
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+
+/* Growth Stats Board - Centered & Responsive */
+.growth-board-container {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    /* Perfect center */
+    transform: translateX(-50%);
+    width: clamp(200px, 40%, 350px);
+    /* Limit max width but allow shrink */
+    height: auto;
+    min-height: 40px;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    border-left: 5px solid #2ecc71;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 4;
+    display: flex;
+    /* Use flex to organize content */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.growth-title {
+    font-size: 10px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.growth-stat {
+    font-size: clamp(12px, 1.5vw, 16px);
+    font-weight: bold;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/* --- MOBILE SPECIFIC FIXES --- */
+@media screen and (max-width: 600px) {
+    .audience-label {
+        display: none;
+    }
+
+    /* Hide labels on mobile to save space */
+    .challenge-label {
+        display: none;
+    }
+
+    .growth-title {
+        display: none;
+    }
+
+    /* Just show the stats on mobile */
+    .growth-board-container {
+        top: 10px;
+        width: 180px;
+    }
+
+    /* Ensure tractor and people don't overlap too unnaturally */
+    .tractor-wrapper {
+        bottom: 2px;
+    }
+
+    .audience-wrapper {
+        bottom: 12%;
+    }
+}
+
+/* Sun Animation */
+.sun {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FFEB3B, 0 0 40px #FDD835;
+    animation: sunPulse 4s infinite alternate;
+}
+
+@keyframes sunPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px #FFEB3B;
+    }
+
+    100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px #FFA000;
+    }
+}
+
+/* Cloud Animation */
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    opacity: 0.8;
+    animation: moveClouds linear infinite;
+}
+
+.cloud-1 {
+    top: 30px;
+    left: -100px;
+    width: 100px;
+    height: 40px;
+    animation-duration: 25s;
+}
+
+.cloud-2 {
+    top: 60px;
+    left: -150px;
+    width: 80px;
+    height: 35px;
+    animation-duration: 35s;
+    animation-delay: 5s;
+}
+
+.cloud-3 {
+    top: 20px;
+    left: -200px;
+    width: 120px;
+    height: 50px;
+    animation-duration: 45s;
+    animation-delay: 2s;
+}
+
+@keyframes moveClouds {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(110vw);
+    }
+}
+
+/* Landscape / Crops */
+.crops {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background:
+        repeating-linear-gradient(90deg,
+            #558b2f 0px,
+            #558b2f 5px,
+            #33691e 5px,
+            #33691e 10px);
+    z-index: 1;
+}
+
+/* Mountain / Hills Background */
+.hills {
+    position: absolute;
+    bottom: 40%;
+    /* Starts where sky ends */
+    width: 100%;
+    height: 60px;
+}
+
+.hill {
+    position: absolute;
+    bottom: 0;
+    border-radius: 100% 100% 0 0;
+    background: #66bb6a;
+}
+
+.hill-1 {
+    left: -50px;
+    width: 300px;
+    height: 50px;
+    background: #81c784;
+}
+
+.hill-2 {
+    left: 200px;
+    width: 400px;
+    height: 70px;
+    background: #66bb6a;
+    z-index: 0;
+}
+
+.hill-3 {
+    right: -50px;
+    width: 350px;
+    height: 60px;
+    background: #81c784;
+}
+
+
+/* Tractor Animation */
+.tractor-wrapper {
+    position: absolute;
+    bottom: 10px;
+    /* Moves on the ground */
+    left: -150px;
+    /* Start off-screen */
+    z-index: 10;
+    animation: driveTractor 25s linear infinite;
+    /* Slower speed */
+}
+
+.tractor-body {
+    display: inline-block;
+    font-size: 60px;
+    /* Restore icon size */
+    color: #e65100;
+    /* Orange tractor */
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Wheel styles removed as we reverted to icon */
+
+/* Dust particles behind tractor */
+.dust {
+    position: absolute;
+    bottom: 5px;
+    left: -10px;
+    width: 10px;
+    height: 10px;
+    background: #d7ccc8;
+    border-radius: 50%;
+    opacity: 0;
+    animation: dustPuff 1s linear infinite;
+}
+
+.dust-2 {
+    left: -20px;
+    animation-delay: 0.2s;
+}
+
+.dust-3 {
+    left: -30px;
+    animation-delay: 0.4s;
+}
+
+@keyframes driveTractor {
+    0% {
+        left: -150px;
+        transform: scaleX(1);
+    }
+
+    /* Start left facing right */
+    45% {
+        left: 105%;
+        transform: scaleX(1);
+    }
+
+    /* Drive to right end */
+    45.01% {
+        transform: scaleX(-1);
+    }
+
+    /* Flip to face left instantly off-screen */
+    50% {
+        left: 105%;
+    }
+
+    /* Pause/Turn time */
+    95% {
+        left: -150px;
+        transform: scaleX(-1);
+    }
+
+    /* Drive back to left */
+    95.01% {
+        transform: scaleX(1);
+    }
+
+    /* Flip back */
+    100% {
+        left: -150px;
+    }
+}
+
+@keyframes dustPuff {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.5) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2) translateY(-10px);
+    }
+}
+
+/* Crop growth animation for fun */
+.growing-crop {
+    position: absolute;
+    bottom: 25px;
+    font-size: 16px;
+    color: #2e7d32;
+    animation: grow 3s infinite alternate;
+}
+
+.c1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.c2 {
+    left: 25%;
+    animation-delay: 1s;
+}
+
+.c3 {
+    left: 40%;
+    animation-delay: 2s;
+}
+
+.c4 {
+    left: 60%;
+    animation-delay: 0.5s;
+}
+
+.c5 {
+    left: 75%;
+    animation-delay: 1.5s;
+}
+
+.c6 {
+    left: 90%;
+    animation-delay: 2.5s;
+}
+
+@keyframes grow {
+    0% {
+        transform: scaleY(0.8);
+    }
+
+    100% {
+        transform: scaleY(1.2);
+    }
+}
+
+/* --- TARGET AUDIENCE ANIMATIONS --- */
+.audience-wrapper {
+    position: absolute;
+    bottom: 35px;
+    /* Stand on the hills/background */
+    right: 15%;
+    display: flex;
+    gap: 15px;
+    z-index: 5;
+}
+
+.audience-member {
+    text-align: center;
+    position: relative;
+    animation: bounceGentle 2s infinite alternate ease-in-out;
+}
+
+.audience-icon {
+    font-size: 24px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+.audience-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 1;
+    /* Always visible */
+    transition: none;
+}
+
+/* Stagger animations */
+.am-1 {
+    animation-delay: 0s;
+}
+
+.am-2 {
+    animation-delay: 0.5s;
+}
+
+.am-3 {
+    animation-delay: 1s;
+}
+
+@keyframes bounceGentle {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* --- CHALLENGES ANIMATIONS --- */
+.challenges-wrapper {
+    position: absolute;
+    top: 50px;
+    left: 15%;
+    width: 200px;
+    height: 100px;
+    z-index: 4;
+    pointer-events: none;
+    /* Let clicks pass */
+}
+
+.challenge-bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #e74c3c;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+    opacity: 0;
+    transform: scale(0);
+    animation: popInOut 6s infinite ease-in-out;
+}
+
+.challenge-label {
+    position: absolute;
+    top: -20px;
+    background: #e74c3c;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.ch-1 {
+    top: 10px;
+    left: 0;
+    animation-delay: 0s;
+}
+
+/* Pests */
+.ch-2 {
+    top: 40px;
+    left: 50px;
+    animation-delay: 2s;
+}
+
+/* Water/Drought */
+.ch-3 {
+    top: 0px;
+    left: 100px;
+    animation-delay: 4s;
+}
+
+/* Market/Money */
+
+@keyframes popInOut {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(10px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(0) translateY(-10px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+
+/* --- GROWTH STATS BOARD --- */
+.growth-board-container {
+    position: absolute;
+    top: 25px;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 300px;
+    /* Slightly wider for longer state names */
+    height: 55px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    border-left: 5px solid #2ecc71;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 4;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.growth-board-container.fading {
+    opacity: 0;
+}
+
+.growth-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    /* Removed animation properties as JS handles it */
+}
+
+.growth-title {
+    font-size: 11px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.growth-stat {
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    /* Prevent wrapping if possible */
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media screen and (max-width: 768px) {
+    .farm-scene-container {
+        height: 140px;
+        /* Reduced height for mobile */
+    }
+
+    /* Adjust Main Elements */
+
+    .growth-board-container {
+        width: 200px;
+        height: 40px;
+        top: 10px;
+        left: 55%;
+        /* Shift slightly right to avoid SDG logo */
+    }
+
+    .growth-title {
+        font-size: 9px;
+    }
+
+    .growth-stat {
+        font-size: 11px;
+    }
+
+    /* Adjust Animation Elements */
+    .tractor-body {
+        font-size: 40px;
+        /* Smaller tractor */
+    }
+
+    @keyframes driveTractor {
+        0% {
+            left: -80px;
+            transform: scaleX(1);
+        }
+
+        45% {
+            left: 110%;
+            transform: scaleX(1);
+        }
+
+        45.01% {
+            transform: scaleX(-1);
+        }
+
+        50% {
+            left: 110%;
+        }
+
+        95% {
+            left: -80px;
+            transform: scaleX(-1);
+        }
+
+        95.01% {
+            transform: scaleX(1);
+        }
+
+        100% {
+            left: -80px;
+        }
+    }
+
+    .audience-wrapper {
+        right: 5%;
+        bottom: 25px;
+        gap: 8px;
+    }
+
+    .audience-icon {
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    /* Challenges Bubbles */
+    .challenges-wrapper {
+        left: 5%;
+        top: 40px;
+        width: 120px;
+    }
+
+    .challenge-bubble {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .ch-1 {
+        top: 10px;
+        left: 0;
+    }
+
+    .ch-2 {
+        top: 30px;
+        left: 30px;
+    }
+
+    .ch-3 {
+        top: 0px;
+        left: 60px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .farm-scene-container {
+        height: 120px;
+    }
+
+    .growth-board-container {
+        width: 160px;
+        left: 60%;
+    }
+
+    .growth-title {
+        display: none;
+    }
+
+    /* Hide title on very small screens */
+    .growth-stat {
+        font-size: 10px;
+        margin-top: 0;
+    }
+
+
+    /* Hide text labels */
+    .audience-label {
+        display: none;
+    }
+}

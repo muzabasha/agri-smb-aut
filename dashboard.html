@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Dashboard - AI/ML Agriculture</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <h1>Progress Dashboard</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Back to Course
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #27ae60, #229954);">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Topics Completed</h3>
+                    <p class="stat-value" id="completedTopics">0</p>
+                    <p class="stat-total">of <span id="totalTopics">0</span> topics</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Time Invested</h3>
+                    <p class="stat-value" id="timeSpent">0</p>
+                    <p class="stat-total">hours completed</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #e67e22, #d35400);">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Time Remaining</h3>
+                    <p class="stat-value" id="timeRemaining">0</p>
+                    <p class="stat-total">hours to complete</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Overall Progress</h3>
+                    <p class="stat-value" id="overallPercentage">0%</p>
+                    <p class="stat-total">completion rate</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Chart -->
+        <div class="progress-section">
+            <h2><i class="fas fa-chart-bar"></i> Module-wise Progress</h2>
+            <div class="module-progress" id="moduleProgress">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Topic List with Status -->
+        <div class="topic-list-section">
+            <h2><i class="fas fa-list-check"></i> All Topics</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Topics</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="activity">Activities</button>
+            </div>
+            <div class="topics-container" id="allTopics">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Quiz Performance -->
+        <div class="quiz-performance-section">
+            <h2><i class="fas fa-trophy"></i> Quiz Performance</h2>
+            <div class="quiz-stats" id="quizStats">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/auth-guard.js"></script>
+    <script src="js/comprehensive-structure.js"></script>
+    <script src="js/progress.js"></script>
+
+    <script>
+        // Listen for updates to refresh dashboard
+        document.addEventListener('progressUpdated', () => {
+            if (typeof initDashboard === 'function') initDashboard();
+            else location.reload();
+        });
+    </script>
+
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

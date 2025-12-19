@@ -1,0 +1,168 @@
+/* Handout-Only LMS Styles */
+/* Enhanced styles for handout content wrapper */
+
+.handout-content-wrapper {
+    background: var(--card-bg);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    min-height: 500px;
+}
+
+.handout-panel {
+    width: 100%;
+    display: block !important;
+    /* Always visible */
+    opacity: 1 !important;
+}
+
+/* Enhanced handout typography */
+.handout-panel h1,
+.handout-content h1,
+.handout-premium h1 {
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-size: 2.2rem;
+    border-bottom: 2px solid rgba(39, 174, 96, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.handout-panel h2,
+.handout-content h2,
+.handout-premium h2 {
+    color: var(--secondary-color);
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.handout-panel h3,
+.handout-content h3,
+.handout-premium h3 {
+    color: var(--accent-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+/* Premium Body Text */
+.handout-panel p,
+.handout-content p,
+.handout-premium p {
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    /* Slightly larger for readability */
+    color: #34495e;
+}
+
+/* List Styling */
+.handout-panel ul,
+.handout-panel ol,
+.handout-content ul,
+.handout-content ol {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.handout-panel li,
+.handout-content li {
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
+}
+
+/* Code blocks in handouts - Modern Developer Look */
+.handout-panel pre,
+.handout-content pre,
+.handout-premium pre {
+    background: #1e293b;
+    /* Dark Slate */
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 2rem 0;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #334155;
+    position: relative;
+}
+
+/* Inline Code */
+.handout-panel code,
+.handout-content code {
+    background: rgba(39, 174, 96, 0.1);
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    color: #d35400;
+    /* Darker accent for contrast */
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.handout-panel pre code,
+.handout-content pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-weight: normal;
+}
+
+/* "Note" or "Tip" Box for Student Guidance */
+.student-note {
+    background: #e8f5e9;
+    border-left: 4px solid #27ae60;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #2e7d32;
+}
+
+.student-warning {
+    background: #fff3e0;
+    border-left: 4px solid #e67e22;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    color: #e65100;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .handout-content-wrapper {
+        padding: var(--spacing-md);
+    }
+
+    .handout-panel h1,
+    .handout-content h1 {
+        font-size: 1.8em;
+    }
+
+    .handout-panel h2,
+    .handout-content h2 {
+        font-size: 1.4em;
+    }
+}
+
+/* Remove old tab-related styles conflicts */
+.tab-content,
+.content-tabs,
+.tab-btn,
+.tab-panel {
+    display: none !important;
+}
+
+/* Ensure handout panel is always visible */
+#handout.handout-panel {
+    display: block !important;
+}
