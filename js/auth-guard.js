@@ -8,61 +8,65 @@ const auth = getAuth(app);
 
 // Check Auth State
 // Check Auth State
-console.log("Auth Guard: Initializing...");
+// Check Auth State
+console.log("Auth Guard: Initializing SPA Mode...");
 
-// Fallback safety: If Firebase takes too long (>4s), force redirect to login
+// Fallback safety: If Firebase takes too long (>4s), show Login Form
 const authTimeout = setTimeout(() => {
     const loader = document.getElementById('app-loader');
     if (loader && loader.style.display !== 'none') {
-        console.warn("Auth Guard: Timeout waiting for Firebase. Redirecting to login...");
-        // If we are not already on the login page, redirect
-        const path = window.location.pathname;
-        if (!path.includes('signin') && !window.location.href.includes('signin.html')) {
-            window.location.href = 'signin.html';
-        }
+        console.warn("Auth Guard: Timeout. Showing Login Form SPA...");
+        document.getElementById('app-loader').style.display = 'none';
+        document.getElementById('login-container').style.display = 'flex';
     }
 }, 4000);
 
 onAuthStateChanged(auth, (user) => {
-    clearTimeout(authTimeout); // Auth check completed
+    clearTimeout(authTimeout);
     console.log("Auth Guard: State changed. User:", user ? user.email : "null");
 
+    const loader = document.getElementById('app-loader');
+    const loginContainer = document.getElementById('login-container');
+    const appContent = document.getElementById('app-content');
+
     if (!user) {
-        // Not logged in
-        console.log("User not logged in. Redirecting to login...");
-
-        // Store current URL to redirect back after login (optional, implemented simply here)
-        sessionStorage.setItem('redirect_after_login', window.location.href);
-
-        // If we are not already on the login page, redirect
-        const path = window.location.pathname;
-        if (!path.includes('signin') && !window.location.href.includes('signin.html')) {
-            window.location.href = 'signin.html';
-        }
-
-        // If we ARE on the login "route" (e.g. /login handled by index.html in SPA mode),
-        // we must manually ensure the loader is hidden and login form is shown?
-        // No, if /login serves index.html, we are in trouble because index.html is NOT the login page.
-        // We need to assume Vercel serves login.html for /login.
-    } else {
-        // User is logged in
-        console.log("User logged in:", user.email);
-
-        // Reveal content
-        // Reveal content
-        const loader = document.getElementById('app-loader');
-        const content = document.getElementById('app-content');
+        // Not logged in -> Show Login Container
         if (loader) loader.style.display = 'none';
-        if (content) content.style.display = 'block';
+        if (appContent) appContent.style.display = 'none';
+        if (loginContainer) loginContainer.style.display = 'flex';
+    } else {
+        // User logged in -> Show App Content
+        if (loader) loader.style.display = 'none';
+        if (loginContainer) loginContainer.style.display = 'none';
+        if (appContent) appContent.style.display = 'block';
 
-        // If we are on login page, redirect to index
-        const path = window.location.pathname;
-        if (path.includes('signin') || window.location.href.includes('signin.html')) {
-            window.location.href = 'index.html';
-        }
-
-        // Expose user globally for other scripts
+        // Expose user globally
         window.currentUser = user;
+    }
+});
+
+// Attach Google Sign In Logic
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+const provider = new GoogleAuthProvider();
+
+// Wait for DOM to be ready to attach listener, or use event delegation
+// We use a global listener because the button might be injected later or exist in DOM
+document.addEventListener('click', async (e) => {
+    // Check if clicked element is the google button or inside it
+    const btn = e.target.closest('#spa-google-btn');
+    if (btn) {
+        console.log("Google Sign In Clicked");
+        try {
+            await signInWithPopup(auth, provider);
+            // Auth State Observer will handle the UI update automatically
+        } catch (error) {
+            console.error("Sign in error:", error);
+            const errDiv = document.getElementById('login-error-msg');
+            if (errDiv) {
+                errDiv.textContent = error.message;
+                errDiv.style.display = 'block';
+            }
+        }
     }
 });
 
