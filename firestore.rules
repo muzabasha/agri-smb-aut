@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 1. User Data Security
+    // Students can only read/write their own progress.
+    // Admin (muza.basha@gmail.com) can read/write any user data.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && 
+                         (request.auth.uid == userId || request.auth.token.email == 'muza.basha@gmail.com');
+    }
+    
+    // 2. Admin Dashboard Listing
+    // Only Admin can list all users to populate the dashboard.
+    match /users/{document=**} {
+      allow read: if request.auth != null && request.auth.token.email == 'muza.basha@gmail.com';
+    }
+  }
+}
