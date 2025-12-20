@@ -19,5 +19,15 @@
             ]
         }
     ],
+    "rewrites": [
+        {
+            "source": "/login",
+            "destination": "/login.html"
+        },
+        {
+            "source": "/admin-dashboard",
+            "destination": "/admin-dashboard.html"
+        }
+    ],
     "trailingSlash": false
 }
