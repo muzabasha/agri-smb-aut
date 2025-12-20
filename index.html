@@ -16,224 +16,294 @@
     <link rel="stylesheet" href="css/premium-ux.css"> <!-- Premium UX enhancements -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Initial Loading State */
         body {
-            display: none;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Hidden by default until Auth Guard verifies user */
+        #app-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f0fdf4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        #app-content {
+            display: none;
+            /* Hidden until loaded */
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #dcfce7;
+            border-top: 5px solid #16a34a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-text {
+            margin-top: 20px;
+            font-family: 'Segoe UI', sans-serif;
+            color: #166534;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Farm Animation Scene -->
-    <!-- Farm Animation Scene -->
-    <div class="farm-scene-container">
-        <div class="sun"></div>
-        <!-- Scene Logo Removed as per user request to avoid duplicate clutter -->
-
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="cloud cloud-3"></div>
-
-        <div class="hills">
-            <div class="hill hill-1"></div>
-            <div class="hill hill-2"></div>
-            <div class="hill hill-3"></div>
-        </div>
-
-        <div class="growing-crop c1"><i class="fas fa-leaf"></i></div>
-        <div class="growing-crop c2"><i class="fas fa-leaf"></i></div>
-        <div class="growing-crop c3"><i class="fas fa-leaf"></i></div>
-        <div class="growing-crop c4"><i class="fas fa-leaf"></i></div>
-        <div class="growing-crop c5"><i class="fas fa-leaf"></i></div>
-        <div class="growing-crop c6"><i class="fas fa-leaf"></i></div>
-
-        <div class="tractor-wrapper">
-            <div class="tractor-body">
-                <i class="fas fa-tractor"></i>
-            </div>
-            <div class="dust dust-1"></div>
-            <div class="dust dust-2"></div>
-            <div class="dust dust-3"></div>
-        </div>
-
-        <div class="audience-wrapper">
-            <div class="audience-member am-1">
-                <i class="fas fa-user-graduate audience-icon"></i>
-                <div class="audience-label">Students</div>
-            </div>
-            <div class="audience-member am-2">
-                <i class="fas fa-chalkboard-teacher audience-icon"></i>
-                <div class="audience-label">Faculty</div>
-            </div>
-            <div class="audience-member am-3">
-                <i class="fas fa-seedling audience-icon"></i>
-                <div class="audience-label">Farmers</div>
-            </div>
-        </div>
+    <!-- App Loader -->
+    <div id="app-loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading Agri-LMS...</div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <!-- REVA University Logo -->
-                <div class="uni-logo-wrapper">
-                    <img src="/images/reva-logo.png" alt="REVA University" class="uni-logo reva-logo"
-                        title="REVA University">
-                </div>
+    <!-- Main App Content (Hidden Initially) -->
+    <div id="app-content">
 
-                <div class="brand-group">
-                    <div class="logo-icon-wrapper">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h1>AI/ML in Agriculture</h1>
-                </div>
+        <!-- Farm Animation Scene -->
+        <div class="farm-scene-container">
+            <div class="sun"></div>
+            <!-- Scene Logo Removed as per user request to avoid duplicate clutter -->
 
-                <!-- GKVK Logo -->
-                <div class="uni-logo-wrapper">
-                    <img src="/images/gkvk_logo.png" alt="UAS GKVK" class="uni-logo gkvk-logo"
-                        title="University of Agricultural Sciences, GKVK">
-                </div>
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
 
-                <!-- SDG Logo -->
-                <div class="uni-logo-wrapper">
-                    <img src="/images/sdg-logo.png" alt="Sustainable Development Goals" class="uni-logo sdg-logo"
-                        title="Sustainable Development Goals">
+            <div class="hills">
+                <div class="hill hill-1"></div>
+                <div class="hill hill-2"></div>
+                <div class="hill hill-3"></div>
+            </div>
+
+            <div class="growing-crop c1"><i class="fas fa-leaf"></i></div>
+            <div class="growing-crop c2"><i class="fas fa-leaf"></i></div>
+            <div class="growing-crop c3"><i class="fas fa-leaf"></i></div>
+            <div class="growing-crop c4"><i class="fas fa-leaf"></i></div>
+            <div class="growing-crop c5"><i class="fas fa-leaf"></i></div>
+            <div class="growing-crop c6"><i class="fas fa-leaf"></i></div>
+
+            <div class="tractor-wrapper">
+                <div class="tractor-body">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="dust dust-1"></div>
+                <div class="dust dust-2"></div>
+                <div class="dust dust-3"></div>
+            </div>
+
+            <div class="audience-wrapper">
+                <div class="audience-member am-1">
+                    <i class="fas fa-user-graduate audience-icon"></i>
+                    <div class="audience-label">Students</div>
+                </div>
+                <div class="audience-member am-2">
+                    <i class="fas fa-chalkboard-teacher audience-icon"></i>
+                    <div class="audience-label">Faculty</div>
+                </div>
+                <div class="audience-member am-3">
+                    <i class="fas fa-seedling audience-icon"></i>
+                    <div class="audience-label">Farmers</div>
                 </div>
             </div>
-            <nav class="main-nav">
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="mobile-menu-btn" style="display: none;">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <!-- Open Access Mode -->
-            </nav>
         </div>
-    </header>
 
-    <!-- Sidebar Overlay for Mobile -->
-    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <!-- REVA University Logo -->
+                    <div class="uni-logo-wrapper">
+                        <img src="/images/reva-logo.png" alt="REVA University" class="uni-logo reva-logo"
+                            title="REVA University">
+                    </div>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="progress-overview">
-                <!-- Sidebar Logo Removed to reduce clutter -->
-                <h3>Your Progress</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="overallProgress"></div>
+                    <div class="brand-group">
+                        <div class="logo-icon-wrapper">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h1>AI/ML in Agriculture</h1>
+                    </div>
+
+                    <!-- GKVK Logo -->
+                    <div class="uni-logo-wrapper">
+                        <img src="/images/gkvk_logo.png" alt="UAS GKVK" class="uni-logo gkvk-logo"
+                            title="University of Agricultural Sciences, GKVK">
+                    </div>
+
+                    <!-- SDG Logo -->
+                    <div class="uni-logo-wrapper">
+                        <img src="/images/sdg-logo.png" alt="Sustainable Development Goals" class="uni-logo sdg-logo"
+                            title="Sustainable Development Goals">
+                    </div>
                 </div>
-                <span class="progress-text" id="progressText">0% Complete</span>
+                <nav class="main-nav">
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="mobile-menu-btn" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <!-- Open Access Mode -->
+                </nav>
             </div>
+        </header>
 
-            <nav class="course-nav" id="courseNav">
-                <!-- Will be populated by JavaScript -->
-            </nav>
-        </aside>
+        <!-- Sidebar Overlay for Mobile -->
+        <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-        <!-- Content Area -->
-        <main class="content-area" id="contentArea">
-            <!-- Welcome Screen -->
-            <div id="welcomeScreen" class="welcome-screen">
-                <div class="hero">
-                    <div class="logo-icon-wrapper hero-icon">
-                        <i class="fas fa-seedling"></i>
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="progress-overview">
+                    <!-- Sidebar Logo Removed to reduce clutter -->
+                    <h3>Your Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgress"></div>
                     </div>
-                    <h1>Welcome to AI/ML in Agriculture</h1>
-                    <p class="subtitle">Transform farming with artificial intelligence and machine learning</p>
-                    <div class="features">
-                        <div class="feature-card">
-                            <i class="fas fa-book-open"></i>
-                            <h3>100+ Interactive Topics</h3>
-                            <p>Comprehensive modules covering AI/ML fundamentals to capstone projects</p>
+                    <span class="progress-text" id="progressText">0% Complete</span>
+                </div>
+
+                <nav class="course-nav" id="courseNav">
+                    <!-- Will be populated by JavaScript -->
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area" id="contentArea">
+                <!-- Welcome Screen -->
+                <div id="welcomeScreen" class="welcome-screen">
+                    <div class="hero">
+                        <div class="logo-icon-wrapper hero-icon">
+                            <i class="fas fa-seedling"></i>
                         </div>
-                        <div class="feature-card">
-                            <i class="fas fa-code"></i>
-                            <h3>Comprehensive Handouts</h3>
-                            <p>All-in-one learning materials with code demos, activities, and assessments</p>
+                        <h1>Welcome to AI/ML in Agriculture</h1>
+                        <p class="subtitle">Transform farming with artificial intelligence and machine learning</p>
+                        <div class="features">
+                            <div class="feature-card">
+                                <i class="fas fa-book-open"></i>
+                                <h3>100+ Interactive Topics</h3>
+                                <p>Comprehensive modules covering AI/ML fundamentals to capstone projects</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-code"></i>
+                                <h3>Comprehensive Handouts</h3>
+                                <p>All-in-one learning materials with code demos, activities, and assessments</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Progress Tracking</h3>
+                                <p>Track your learning journey with visual progress indicators</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3>Assessments</h3>
+                                <p>Quizzes and activities to reinforce your learning</p>
+                            </div>
                         </div>
-                        <div class="feature-card">
-                            <i class="fas fa-chart-line"></i>
-                            <h3>Progress Tracking</h3>
-                            <p>Track your learning journey with visual progress indicators</p>
+                        <div class="hero-actions">
+                            <button class="cta-button btn-pulse" onclick="window.location.hash='#m1-t1'">
+                                Start Learning <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
-                        <div class="feature-card">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>Assessments</h3>
-                            <p>Quizzes and activities to reinforce your learning</p>
+
+                    </div>
+                </div>
+
+                <!-- Module Overview (New View) -->
+                <div id="moduleOverview" class="module-overview" style="display: none;">
+                    <div class="module-hero">
+                        <h1 id="moduleTitleDisplay">Module Title</h1>
+                        <p class="module-subtitle">Course Syllabus & Resources</p>
+                    </div>
+
+                    <div class="module-grid">
+                        <div class="module-card objectives">
+                            <h3><i class="fas fa-bullseye"></i> Objectives</h3>
+                            <ul id="moduleObjectives"></ul>
+                        </div>
+
+                        <div class="module-card outcomes">
+                            <h3><i class="fas fa-check-circle"></i> Outcomes</h3>
+                            <ul id="moduleOutcomes"></ul>
+                        </div>
+
+                        <div class="module-card resources">
+                            <h3><i class="fas fa-book"></i> Reference Material</h3>
+                            <h4>Textbooks</h4>
+                            <ul id="moduleTextbooks"></ul>
+                            <h4>References</h4>
+                            <ul id="moduleReferences"></ul>
+                        </div>
+
+                        <div class="module-card video-links">
+                            <h3><i class="fab fa-youtube"></i> Video Lectures</h3>
+                            <ul id="moduleYoutube"></ul>
                         </div>
                     </div>
-                    <div class="hero-actions">
-                        <button class="cta-button btn-pulse" onclick="window.location.hash='#m1-t1'">
-                            Start Learning <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <!-- Topic Content (will be dynamically loaded) -->
+                <div id="topicContent" class="topic-content" style="display: none;">
+
+                    <!-- Handout Content -->
+                    <div class="handout-content-wrapper">
+                        <div id="handout" class="handout-panel"></div>
+                        <div id="quiz" class="quiz-panel"
+                            style="display: none; margin-top: 3rem; border-top: 1px solid #eee; padding-top: 2rem;">
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="topic-navigation">
+                        <button class="nav-btn prev-btn" id="prevBtn">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <button class="nav-btn mark-complete-btn" id="markCompleteBtn">
+                            <i class="fas fa-check"></i> Mark as Complete
+                        </button>
+                        <button class="nav-btn next-btn" id="nextBtn">
+                            Next <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
-
                 </div>
-            </div>
+            </main>
+        </div>
+    </div> <!-- End of app-content -->
 
-            <!-- Module Overview (New View) -->
-            <div id="moduleOverview" class="module-overview" style="display: none;">
-                <div class="module-hero">
-                    <h1 id="moduleTitleDisplay">Module Title</h1>
-                    <p class="module-subtitle">Course Syllabus & Resources</p>
-                </div>
-
-                <div class="module-grid">
-                    <div class="module-card objectives">
-                        <h3><i class="fas fa-bullseye"></i> Objectives</h3>
-                        <ul id="moduleObjectives"></ul>
-                    </div>
-
-                    <div class="module-card outcomes">
-                        <h3><i class="fas fa-check-circle"></i> Outcomes</h3>
-                        <ul id="moduleOutcomes"></ul>
-                    </div>
-
-                    <div class="module-card resources">
-                        <h3><i class="fas fa-book"></i> Reference Material</h3>
-                        <h4>Textbooks</h4>
-                        <ul id="moduleTextbooks"></ul>
-                        <h4>References</h4>
-                        <ul id="moduleReferences"></ul>
-                    </div>
-
-                    <div class="module-card video-links">
-                        <h3><i class="fab fa-youtube"></i> Video Lectures</h3>
-                        <ul id="moduleYoutube"></ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Topic Content (will be dynamically loaded) -->
-            <div id="topicContent" class="topic-content" style="display: none;">
-
-                <!-- Handout Content -->
-                <div class="handout-content-wrapper">
-                    <div id="handout" class="handout-panel"></div>
-                    <div id="quiz" class="quiz-panel"
-                        style="display: none; margin-top: 3rem; border-top: 1px solid #eee; padding-top: 2rem;">
-                    </div>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <div class="topic-navigation">
-                    <button class="nav-btn prev-btn" id="prevBtn">
-                        <i class="fas fa-chevron-left"></i> Previous
-                    </button>
-                    <button class="nav-btn mark-complete-btn" id="markCompleteBtn">
-                        <i class="fas fa-check"></i> Mark as Complete
-                    </button>
-                    <button class="nav-btn next-btn" id="nextBtn">
-                        Next <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </main>
-    </div>
+    <!-- Safety Fallback Script: If things take too long (5s), assume error or not logged in -->
+    <script>
+        setTimeout(() => {
+            const loader = document.getElementById('app-loader');
+            if (loader && loader.style.display !== 'none') {
+                console.warn('App took too long to load. Checking auth state fallback...');
+                // Fallback: Check if we have a user in session or just redirect to login to be safe if no other script ran
+                // But let auth-guard handle it mostly. This is for total failure.
+                if (!window.currentUser) {
+                    window.location.href = 'login.html';
+                }
+            }
+        }, 5000); 
+    </script>
 
     <!-- Scripts -->
     <div id="toast-container" class="toast-container"></div>

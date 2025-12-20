@@ -24,7 +24,11 @@ onAuthStateChanged(auth, (user) => {
         console.log("User logged in:", user.email);
 
         // Reveal content
-        document.body.style.display = 'block';
+        // Reveal content
+        const loader = document.getElementById('app-loader');
+        const content = document.getElementById('app-content');
+        if (loader) loader.style.display = 'none';
+        if (content) content.style.display = 'block';
 
         // If we are on login page, redirect to index
         if (window.location.href.includes('login.html')) {
